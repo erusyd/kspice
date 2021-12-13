@@ -1,0 +1,30 @@
+#!/bin/sh
+NUMBER=3
+for xx in $@; do
+	if test -d "${xx}"; then
+		cd ${xx}
+		if test -r makedefs; then
+			mv -f makedefs makedefs.old
+		fi
+		cat > makedefs <<ENDOFMAKEFILE
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= `echo *.c | xfmt -60 \
+	| sed -e 's/\*//g' -e 's/\$/ \\\\/' -e '\$s/ \\\\\$//' \
+		-e '2,\$s/^/		  /'`
+
+COBJS		= `echo *.c | xfmt -60 \
+	| sed -e 's/\*//g' -e 's/\.c/.o/g' -e 's/\$/ \\\\/' \
+		-e '\$s/ \\\\\$//' -e '2,\$s/^/		  /'`
+
+MODULE		= ${xx}
+LIBRARY		= dev
+MODULE_TARGET	= \$(OBJLIB_DIR)/\$(MODULE)
+
+NUMBER		= ${NUMBER}
+ENDOFMAKEFILE
+		cd ..
+	fi
+done

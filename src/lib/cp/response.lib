@@ -1,0 +1,17 @@
++alias.obj&
++backq.obj&
++complete.obj&
++cshpar.obj&
++front.obj&
++glob.obj&
++history.obj&
++input.obj&
++lexical.obj&
++modify.obj&
++output.obj&
++quote.obj&
++spawn.obj&
++std.obj&
++unixcom.obj&
++variable.obj&
++wlist.obj;

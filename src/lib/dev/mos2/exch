@@ -1,0 +1,4 @@
+                if( (!here->MOS2drainSquaresGiven)  || 
+                        (here->MOS2drainSquares==0) ) {
+                    here->MOS2drainSquares=1;
+                }

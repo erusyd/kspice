@@ -1,0 +1,17 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= csw.c cswacld.c cswask.c cswdel.c cswdest.c cswload.c \
+		  cswmask.c cswmdel.c cswmpar.c cswnoise.c cswparam.c \
+		  cswpzld.c cswsetup.c 
+
+COBJS		= csw.o cswacld.o cswask.o cswdel.o cswdest.o cswload.o \
+		  cswmask.o cswmdel.o cswmpar.o cswnoise.o cswparam.o \
+		  cswpzld.o cswsetup.o 
+
+MODULE		= csw
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 3

@@ -1,0 +1,17 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= b2acld.c b2cvtest.c b2del.c b2dest.c b2eval.c b2getic.c \
+		  b2ld.c b2mask.c b2mdel.c b2moscap.c b2mpar.c b2par.c \
+		  b2pzld.c b2set.c b2temp.c b2trunc.c b2.c b2ask.c 
+
+COBJS		= b2acld.o b2cvtest.o b2del.o b2dest.o b2eval.o b2getic.o \
+		  b2ld.o b2mask.o b2mdel.o b2moscap.o b2mpar.o b2par.o \
+		  b2pzld.o b2set.o b2temp.o b2trunc.o b2.o b2ask.o 
+
+MODULE		= bsim2
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 3

@@ -1,0 +1,7 @@
+# HP-UX 7.? (HP Unix), on 9000/300 systems
+
+INCX	=
+LIBX	=
+MAKE	=	/bin/make
+CFLAGS	=	-Wc,-Np300 -Wc,-Ns10000
+RANLIB	=	echo

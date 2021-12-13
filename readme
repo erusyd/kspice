@@ -1,0 +1,315 @@
+
+
+
+
+
+
+								May, 1991
+
+			Spice3e.2 Installation (Modified for KSPICE)
+
+Spice3e.2 is supported under the following operating systems:
+	Ultrix 4, RISC or VAX
+	SunOS 4, Sun3 or Sun4
+	AIX V3, RS/6000
+	Irix 3.2, SGI Personal Iris
+	MS-DOS on the IBM PC, using MicroSoft C 5.1 or later
+	Dynix 3.0, Sequent Symmetry or Balance (does not take advantage of 
+	HP-UX 7.0, 9000/300 *
+	NeXT 2.0 *
+('*' denotes that the given system was not verified for this release).
+Other systems will require a small amount of porting effort.  Note that
+the 'gcc' C compiler was used successfully to compile Spice3e.2.
+
+Note that due to the heavy use of floating point math operations, Spice
+on the PC requires a math co-processor to be effective.  Also, on the
+PC, CGA, EGA, and VGA displays are supported (via the MicroSoft
+graphics library).
+
+The Unix distribution comes on 1/2" 9-track tape in "tar" format.  The
+MS-DOS distribution comes on several 3.5" floppy diskettes (both high
+and low density) in the standard MS-DOS format.  The contents of both
+distributions are identical, including filenames.
+
+To build Spice3e.2 follow the steps below.  For additional notes on internal
+changes and porting issues, please inspect the subdirectory "notes".  The
+following is a list of new features and fixes from the previous major release
+of Spice3 (3d.2) (see the user's manual for details):
+
+	Lossy transmission line model (not available under MS-DOS)
+	Proper calculation of sheet resistance in MOS models
+	A new command ("where") to aid in debugging troublesome circuits
+	Smith-chart plots improved.
+	Arbitrary sources in subcircuits handled correctly
+	Arbitrary source reciprocal calculations and DC biasing
+		now done correctly
+	Minor bug-fixes to the Pole-Zero analysis
+	Miscellaneous bug fixes in the front end
+
+Changes from the previous minor versions (3e.1) correct compilation
+problems under SunOS and VAX Ultrix, a problem affecting the
+calculation of integrated noise, and other bugs.  No changes affect the
+Spice3e User's Manual.
+
+The source code and associated data files for spice3e.2 require over 6MB,
+and up to an additional 22MB may be required to compile under Unix (for a
+DEC RISC workstation with the compiler option '-g').  For MS-DOS using
+MicroSoft C 5.1 or later, nearly 8MB (beyond the 6MB for the source) are
+required.
+
+Building Spice3e.2 on UNIX or compatible systems:
+
+	Spice3e.2 comes on a 9-track tape in Unix "tar" format.  To
+	extract Spice3e.2 first create the directory that you wish to
+	hold the distribution and "cd" into that directory.  Then
+	execute the command "tar x" (after mounting the tape).  Note
+	that some sites may require that you explicitly indicate the
+	tape drive name when using the "tar" command; this is done, for
+	example, by "tar xf /dev/mt0h".
+
+	Configuring Spice3e.2 is different than in previous releases.
+	In particular, maintaining different configurations for different
+	systems is now much easier.
+
+	First you must edit the file "conf/defaults" and change the
+	listed parameters to reflect the standard organization of
+	software at your site.  A description of each parameter is
+	included in this file.
+
+	Second, for each type of system at your site, you must provide a
+	file in the same subdirectory ("conf/") which contains
+	exceptions to the previously edited "defaults" file; note that
+	even if you are supporting one type of system this is necessary.
+	Several files are supplied for the system types that have been
+	tested with this distribution, including "mips" (for DECstations),
+	"sun4", "sequent", "irix", "hpux", and "aix".  Note that some of
+	these files sometimes have special definitions which are required for
+	the given system and which do not appear in the "defaults" file.
+	Note also that the _names_ given to these exception files are not
+	significant other than to the user.
+
+	After the defaults file has been edited and a system-dependent
+	file created or modified, run the command "util/build system" from the
+	directory above the "util" subdirectory; for "system" you must
+	substitute the name of the system-dependent file that you
+	created or modified in the previous step.  Spice3 will then be
+	built via recursive "make" commands.  This can take as little
+	as 20 minutes or as long as four hours depending on the speed
+	and load of your system.  Compiling across NFS will slow down
+	compiling significantly.
+
+	Finally, see the section below on Installing Spice3.
+
+
+On the PC under MS-DOS with MicroSoft C 5.1:
+
+	Spice3e.2 comes on MS-DOS format 3.5" disks.  To extract the
+	distribution onto a hard disk, create the directory on the hard
+	disk that you wish to hold the source code.  "cd" into that
+	directory on the hard disk.  For each of the distributed disks,
+	in order, insert the disk into the drive (we'll assume drive
+	"B:" here), and enter "B:UNLOAD B:".  This will use the script
+	"unload.bat" to extract the source files off of the disks and
+	into the current directory or a subdirectory of the current
+	directory.
+
+	The PC lacks the program "/bin/sh" (and others) which the above
+	Unix installation depends on.  Instead we have supplied simple
+	compiling scripts for use with MicroSoft C 5.1.  This less
+	flexible system requires that you edit several files before building:
+
+		src/bin/tunepc.c (built-in file locations); Change the values
+			of the following C variables as appropriate -- leave
+			double quote and single quote marks as-is, and use
+			two backslash ('\') characters where you want one:
+
+			Spice_Exec_Dir: location you plan to install spice.
+
+			Spice_Lib_Dir: location you plan to install the spice
+				startup and data files.
+
+			Spice_OptChar: command line option character
+				(indicates whether you want to type
+				"spice -r" or "spice /r").
+
+			Def_Editor: location you plan to install spice
+
+			AsciiRawFile: location you plan to install spice
+
+			The last three options (not listed here) are not
+			significant under MS-DOS, but should be left as is
+			(blank).
+
+		src/bin/cconf.c		Devices and analyses for "cspice"
+		src/bin/bconf.c		Devices and analyses for "bspice"
+
+			The initial segment of "cconf.c" and "bconf.c"
+			are "#define" lines that determine which devices
+			and analyses should be compiled in to the simulator.
+			For devices, the line looks like "#define DEV_xxx"
+			where "xxx" is the name of some device;  For
+			analyses, the line looks like "#define AN_xxx".
+			Names and descriptions of both analyses and devices
+			are as listed below ("Devices and Analyses supported
+			in Spice3e.2", at the end); see also the user's manual.
+			A reasonable default is supplied with each.
+			Do not modify anything below the list of '#define'
+			lines.
+
+	Note that BSIM1, BSIM2, and LTRA devices will _not_ work under
+	MicroSoft C (the first two because of compiler limits and the last
+	due to the lack of the "erfc" function).  They have already been
+	removed from the above files (where appropriate) (also, the bsim
+	devices are not compiled with the "msc51" scripts).
+
+(continued)
+
+	Once these files have been edited, "cd" into the top directory
+	(above "util\", "src\", and "conf\") and run "msc51.bat".  The
+	script first sets compiler options in the environment and then
+	procedes with the compile.  Since the environment may not have
+	enough room, you may have to clear some unused environment
+	variables before the build, otherwise the build could fail.
+	Note that these options are only useful for MicroSoft C 5.1 or
+	later.
+
+	Compiler errors are written to the file "src\msc.out".  This
+	includes many warnings because Spice3 was originally written in
+	pre-ANSI C under Unix.  Except for these (numerous) warnings,
+	Spice3 should compile and run without trouble; see the next section
+	on installing.
+
+	Cleaning up under MS-DOS (after installing):
+
+	To delete the original source tree from your hard disk, you may
+	use the supplied script "util\delall.bat".  You must copy
+	this script outside of the source tree before you run it or it
+	will remove itself before finishing.  Run the script from the top
+	directory of the source tree (above "util\").
+
+Installing Spice3
+
+	After spice3 and the associated programs have been created, you
+	may test the program.  There are several test inputs in the
+	"examples" subdirectory. The bsim and ltra tests
+	will not run under MS-DOS.  Because spice3 is not
+	installed at this point, you should set the environment
+	variable "SPICE_LIB_DIR" to the "lib" subdirectory to indicate
+	the location of some startup files.
+
+	Finally, you may install spice3 and associated components into
+	a standard place.  Under Unix systems, the command "util/build
+	system install" will do this automatically (again substitute
+	your system name or type for "system").  Under MS-DOS, the
+	files must be copied explicitly.
+
+	The executable programs are from the subdirectories "src/bin",
+	as follows:
+		spice3		UNIX only: the simulator
+		bspice		MS-DOS only: a batch mode simulator:
+				"bspice < input.cir" generates the file
+				"rawspice.raw", which is read by "nutmeg"
+				(see below).
+		cspice		MS-DOS only: a spice2 like interface for
+				small runs (runs out of memory easily).
+				Use "cspice < input.cir"; generates
+				'asciiplots' for .plot lines.
+		nutmeg		A stand-alone data analysis program;
+				Spice3 without the simulation capability
+		help		A stand alone help browser
+		proc2mod	Converts process characterization files
+				to Spice3 BSIM1 MOS model definitions.
+		sconvert	Converts between ascii and binary spice
+				data files (".raw" files).  Note: sconvert
+				does not build correctly under AIX.
+		multidec	A utility for decomposing coupled lossy
+				transmission lines into equivalent uncoupled
+				lines.  Not available on MS-DOS (need the
+				"getopt" library).
+
+	The following startup/data files are installed from the "lib/"
+	subdirectory:
+		helpdir/spice.txt	on-line information for spice3
+		helpdir/spice.idx	index for spice.txt, generated with
+						the program "bin/makeidx"
+		helpdir/nutmeg.txt	on-line information for nutmeg
+		helpdir/nutmeg.idx	index for spice.txt, generated with
+						the program "bin/makeidx"
+
+		scripts/spinit		spice/nutmeg commands executed at
+						startup
+		scripts/setplot		A script for the command "setplot"
+
+		news			a start up message of your choosing
+		mfbcap			graphics-terminal capability database
+					(not required for MS-DOS).
+
+	(For a slightly speedier install under Unix, issue the build
+	command from the subdirectories "lib/" and "src/bin/" individually).
+
+	For the PC, you must generate the ".idx" files yourself by
+	running "makeidx spice.txt" and "makeidx nutmeg.txt".  Unix
+	"man" pages are also supplied for the programs spice, nutmeg,
+	and sconvert, for the mfb database format (looks like termcap),
+	and for the mfb library.  These are not installed automatically.
+
+Devices and Analyses supported in Spice3e.2:
+	For reference, the following is a list of all devices and their
+	common abbreviation in Spice3:
+
+		asrc:	arbitrary voltage/current source
+		bjt:	bipolar junction transistor
+		bsim1:	detailed MOS model
+		bsim2:	detailed MOS model, revised version of bsim1
+		cap:	capacitor
+		cccs:	current-controlled current source
+		ccvs:	current-controlled voltage source
+		csw:	current controlled switch
+		dio:	diode
+		ltra:	lossy transmission line
+		txl:    lossy transmission line using recursive convolution
+		cpl:    coupled multi-conductor line system
+		ind:	inductor
+		isrc:	current source
+		jfet:	Junction FET
+		mes:	MES FET (GaAs)
+		mos1:	MOS, simplest analytic model, fastest
+		mos2:	MOS, middle complexity and accuracy
+		mos3:	MOS, most complicated, most accurate
+		mos6: 	MOS, new, fast analytic, short-channel
+		res:	resistor
+		sw:	switch
+		tra:	lossless transmission line
+		urc:	uniform RC line
+		vccs:	voltage-controlled current source
+		vcvs:	voltage-controlled voltage source
+		vsrc:	voltage source
+
+	The following is the corresponding list of analyses:
+		op:	DC operating point
+		dc:	DC transfer curve
+		tf:	Small signal transfer function
+		ac:	AC (frequency domain)
+		tran:	transient
+		pz:	pole-zero
+		disto:	distortion
+		noise:	noise
+		sense:	sensitivity
+
+
+
+Technical Problems
+
+	Please report any bugs or problems to (via e-mail):
+
+		chough@diva.Berkeley.EDU
+
+	or (via US Mail):
+
+		Software Distribution Office
+		Attn: Spice Technical Question
+		479 Cory Hall
+		University of California at Berkeley
+		Berkeley, CA  94720
+
+	

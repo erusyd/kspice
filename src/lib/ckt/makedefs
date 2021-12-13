@@ -1,0 +1,49 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= acan.c acaskq.c acsetp.c cktaccpt.c cktacct.c cktacdum.c \
+		  cktask.c cktaskaq.c cktasknq.c cktbindn.c cktbkdum.c \
+		  cktclrbk.c cktcrte.c cktdelt.c cktdest.c cktdisto.c \
+		  cktdlti.c cktdltm.c cktdltn.c cktdojob.c cktdump.c \
+		  cktfbran.c cktfdev.c cktfnda.c cktfndm.c cktfnode.c \
+		  cktftask.c cktgrnd.c ckti2nod.c cktic.c cktinit.c \
+		  cktlnkeq.c cktload.c cktmapn.c cktmask.c cktmcrt.c \
+		  cktmkcur.c cktmknod.c cktmkvol.c cktmpar.c cktnames.c \
+		  cktnewan.c cktneweq.c cktnewn.c cktnodn.c cktnoise.c \
+		  cktntask.c cktnum2n.c cktop.c cktparam.c cktpmnam.c \
+		  cktpname.c cktpzld.c cktpzset.c cktpzstr.c cktsenac.c \
+		  cktsenup.c cktsetap.c cktsetbk.c cktsetnp.c cktsetup.c \
+		  cktsncom.c cktsndct.c cktsnld.c cktsnprt.c cktsnset.c \
+		  cktsopt.c ckttemp.c cktterr.c ckttroub.c ckttrunc.c \
+		  ckttyplk.c daskq.c dcoaskq.c dcop.c dcosetp.c dctaskq.c \
+		  dctran.c dctrcurv.c dctsetp.c distoan.c dkerproc.c \
+		  dloadfns.c dsetparm.c naskq.c nevalsrc.c ninteg.c noisean.c \
+		  nsetparm.c pzan.c pzaskq.c pzsetp.c sendest.c sensetp.c \
+		  snaskq.c snstart.c sperror.c tfanal.c tfaskq.c tfsetp.c \
+		  tranaskq.c traninit.c transetp.c 
+
+COBJS		= acan.o acaskq.o acsetp.o cktaccpt.o cktacct.o cktacdum.o \
+		  cktask.o cktaskaq.o cktasknq.o cktbindn.o cktbkdum.o \
+		  cktclrbk.o cktcrte.o cktdelt.o cktdest.o cktdisto.o \
+		  cktdlti.o cktdltm.o cktdltn.o cktdojob.o cktdump.o \
+		  cktfbran.o cktfdev.o cktfnda.o cktfndm.o cktfnode.o \
+		  cktftask.o cktgrnd.o ckti2nod.o cktic.o cktinit.o \
+		  cktlnkeq.o cktload.o cktmapn.o cktmask.o cktmcrt.o \
+		  cktmkcur.o cktmknod.o cktmkvol.o cktmpar.o cktnames.o \
+		  cktnewan.o cktneweq.o cktnewn.o cktnodn.o cktnoise.o \
+		  cktntask.o cktnum2n.o cktop.o cktparam.o cktpmnam.o \
+		  cktpname.o cktpzld.o cktpzset.o cktpzstr.o cktsenac.o \
+		  cktsenup.o cktsetap.o cktsetbk.o cktsetnp.o cktsetup.o \
+		  cktsncom.o cktsndct.o cktsnld.o cktsnprt.o cktsnset.o \
+		  cktsopt.o ckttemp.o cktterr.o ckttroub.o ckttrunc.o \
+		  ckttyplk.o daskq.o dcoaskq.o dcop.o dcosetp.o dctaskq.o \
+		  dctran.o dctrcurv.o dctsetp.o distoan.o dkerproc.o \
+		  dloadfns.o dsetparm.o naskq.o nevalsrc.o ninteg.o noisean.o \
+		  nsetparm.o pzan.o pzaskq.o pzsetp.o sendest.o sensetp.o \
+		  snaskq.o snstart.o sperror.o tfanal.o tfaskq.o tfsetp.o \
+		  tranaskq.o traninit.o transetp.o 
+
+LIBRARY		= ckt
+LIB_TARGET	= $(OBJLIB_DIR)/$(LIBRARY).a
+

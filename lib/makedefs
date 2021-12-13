@@ -1,0 +1,35 @@
+
+INSTALL_TARGETS	= $(SPICE_LIB_DIR)/mfbcap $(SPICE_LIB_DIR)/news		      \
+		  $(SPICE_LIB_DIR)/scripts/setplot			      \
+		  $(SPICE_LIB_DIR)/scripts/spinit			      \
+		  $(SPICE_LIB_DIR)/helpdir/spice.txt			      \
+		  $(SPICE_LIB_DIR)/helpdir/spice.idx			      \
+		  $(SPICE_LIB_DIR)/helpdir/nutmeg.txt			      \
+		  $(SPICE_LIB_DIR)/helpdir/nutmeg.idx
+
+$(SPICE_LIB_DIR)/mfbcap: mfbcap
+	-cp $? $@
+
+$(SPICE_LIB_DIR)/news: news
+	-cp $? $@
+
+$(SPICE_LIB_DIR)/scripts/setplot: scripts/setplot
+	-cp $? $@
+
+$(SPICE_LIB_DIR)/scripts/spinit: scripts/spinit
+	-cp $? $@
+
+$(SPICE_LIB_DIR)/helpdir/spice.txt: helpdir/spice.txt
+	-cp $? $@
+
+$(SPICE_LIB_DIR)/helpdir/spice.idx: helpdir/spice.txt
+$(SPICE_LIB_DIR)/helpdir/spice.idx: $(EXEC_DIR)/makeidx
+	$(EXEC_DIR)/makeidx $(SPICE_LIB_DIR)/helpdir/spice.txt
+
+$(SPICE_LIB_DIR)/helpdir/nutmeg.txt: helpdir/nutmeg.txt
+	-cp $? $@
+
+$(SPICE_LIB_DIR)/helpdir/nutmeg.idx: helpdir/nutmeg.txt
+$(SPICE_LIB_DIR)/helpdir/nutmeg.idx: $(EXEC_DIR)/makeidx
+	$(EXEC_DIR)/makeidx $(SPICE_LIB_DIR)/helpdir/nutmeg.txt
+

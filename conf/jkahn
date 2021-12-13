@@ -1,0 +1,6 @@
+
+SPICE_DIR = /tmp/for_jkahn
+SPICE_LIB_DIR = $(SPICE_DIR)/lib/spice3
+S_SPICE_DIR = ~cad
+S_SPICE_LIB_DIR = $(S_SPICE_DIR)/lib/spice3
+

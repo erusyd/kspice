@@ -1,0 +1,15 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= mos6.c mos6ask.c mos6conv.c mos6dest.c mos6ic.c mos6load.c \
+		  mos6mpar.c mos6par.c mos6set.c mos6temp.c mos6trun.c 
+
+COBJS		= mos6.o mos6ask.o mos6conv.o mos6dest.o mos6ic.o mos6load.o \
+		  mos6mpar.o mos6par.o mos6set.o mos6temp.o mos6trun.o 
+
+MODULE		= mos6
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 2

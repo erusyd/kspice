@@ -1,0 +1,19 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= cap.c capacld.c capask.c capdel.c capdest.c capgetic.c \
+		  capload.c capmask.c capmdel.c capmpar.c capparam.c \
+		  cappzld.c capsacl.c capsetup.c capsload.c capsprt.c \
+		  capsset.c capsupd.c captemp.c captrunc.c 
+
+COBJS		= cap.o capacld.o capask.o capdel.o capdest.o capgetic.o \
+		  capload.o capmask.o capmdel.o capmpar.o capparam.o \
+		  cappzld.o capsacl.o capsetup.o capsload.o capsprt.o \
+		  capsset.o capsupd.o captemp.o captrunc.o 
+
+MODULE		= cap
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 1

@@ -1,0 +1,21 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= bjt.c bjtacld.c bjtask.c bjtconv.c bjtdel.c bjtdest.c \
+		  bjtdisto.c bjtdset.c bjtgetic.c bjtload.c bjtmask.c \
+		  bjtmdel.c bjtmpar.c bjtnoise.c bjtparam.c bjtpzld.c \
+		  bjtsacl.c bjtsetup.c bjtsload.c bjtsprt.c bjtsset.c \
+		  bjtsupd.c bjttemp.c bjttrunc.c 
+
+COBJS		= bjt.o bjtacld.o bjtask.o bjtconv.o bjtdel.o bjtdest.o \
+		  bjtdisto.o bjtdset.o bjtgetic.o bjtload.o bjtmask.o \
+		  bjtmdel.o bjtmpar.o bjtnoise.o bjtparam.o bjtpzld.o \
+		  bjtsacl.o bjtsetup.o bjtsload.o bjtsprt.o bjtsset.o \
+		  bjtsupd.o bjttemp.o bjttrunc.o 
+
+MODULE		= bjt
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 2

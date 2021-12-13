@@ -1,0 +1,12 @@
+SPICE_HOST
+SPICED_LOG /tmp/spiced.log
+DEFAULT_EDITOR vi
+ASCII_RAWFILE 1
+VERSION 1.0
+NOTICE
+DEVICES cpl txl asrc bjt cap cccs ccvs csw dio ind isrc jfet ltra mes mos1 mos2 mos3 mos6 res sw tra urc vccs vcvs vsrc
+ANALYSES op dc tf ac tran pz disto noise sense
+S_SPICE_EXEC_DIR /project1/swec//spice/src/bin
+S_SPICE_LIB_DIR /project1/swec//spice/src/lib
+BUG_ADDR spice-bugs@Berkeley.EDU
+OPT_CHAR -

@@ -1,0 +1,9 @@
++spalloc.obj&
++spbuild.obj&
++spcompat.obj&
++spfactor.obj&
++spfort.obj&
++spoutput.obj&
++spsmp.obj&
++spsolve.obj&
++sputils.obj;

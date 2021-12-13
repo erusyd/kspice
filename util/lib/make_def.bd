@@ -1,0 +1,117 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+SHELL		= /bin/sh
+PATH_SEP	= /
+PS		= /
+#VERSION		= 3e2
+VERSION = 1.0
+NOTICE		=
+#TOP		= /projects/spice3/spice$(VERSION)
+TOP			= /project1/swec/spice
+#OBJECTIVE	= spice
+OBJECTIVE	= kspice
+SYS_DIR		= $(CWD_TO_TOP)/$(SYSTEM)
+EXEC_DIR	= $(CWD_TO_TOP)/src/bin
+OBJLIB_DIR	= $(CWD_TO_TOP)/src/lib
+TAGS_DIR	= $(ABS_TOP)/src/lib
+CTAGS_FILE	= $(TAGS_DIR)/tags
+ETAGS_FILE	= $(TAGS_DIR)/TAGS
+
+CONF_CC		= $(SCRAP_DIR)/$(OBJECTIVE)-cc
+CONF_LD		= $(SCRAP_DIR)/$(OBJECTIVE)-ld
+CONF_XCC	= $(SCRAP_DIR)/$(OBJECTIVE)-cx
+CONF_SPICE	= $(SCRAP_DIR)/$(OBJECTIVE)
+SCRAP_DIR	= $(CWD_TO_TOP)/tmp
+SYSCONF_DIR	= $(SCRAP_DIR)
+SYS_CONF	= $(SYSCONF_DIR)
+
+DATALIB_DIR	= $(CWD_TO_TOP)/lib
+INCLUDE_DIR	= $(CWD_TO_TOP)/src/include
+UTIL_DIR	= $(CWD_TO_TOP)/util
+OBJ_DIR		= .
+CLEANASYOUGO	= true
+ARFLAGS		= r$(ARLOCAL)
+ALL_PURPOSE	= default_all
+PRE_PURPOSE	= pre_$(PURPOSE)
+PURPOSE		= all
+INCLUDE		= -I$(INCLUDE_DIR)
+CC		= cc
+
+SPICE_TUNE	= -DBUG_ADDR=\"$(BUG_ADDR)\" -DHELP_DIR=\"$(HELP_DIR)\"	      \
+		  -DSCRIPT_DIR=\"$(SCRIPT_DIR)\" -DNEWS_FILE=\"$(NEWS_FILE)\" \
+		  -DDEFAULT_MFBCAP=\"$(DEFAULT_MFBCAP)\"		      \
+		  -DSPICE_HOST=\"$(SPICE_HOST)\"			      \
+		  -DSPICE_PATH=\"$(SPICE_PATH)\"			      \
+		  -DSPICED_LOG=\"$(SPICED_LOG)\"			      \
+		  -DDEFAULT_EDITOR=\"$(DEFAULT_EDITOR)\"		      \
+		  -DASCII_RAWFILE=$(ASCII_RAWFILE)			      \
+		  -DOPT_CHAR=\'$(OPT_CHAR)\'				      \
+		  -DBUILD_DATE=\""${BUILD_DATE}"\"			      \
+		  -DNOTICE=\""$(NOTICE)"\"				      \
+		  -DVERSION=\""${VERSION}"\"				      \
+		  -DDEVICES=\""${DEVICES}"\"				      \
+		  -DANALYSES=\""${ANALYSES}"\"
+
+NUTMEG_TARGET   = $(NUTMEG_EXEC)
+SPICE_TARGET    = $(SPICE_EXEC)
+# BSPICE_TARGET	= $(BSPICE_EXEC)
+BSPICE_TARGET	=
+# CSPICE_TARGET	= $(CSPICE_EXEC)
+CSPICE_TARGET	=
+
+#SPICE_EXEC	= spice3
+SPICE_EXEC	= kspice
+BSPICE_EXEC	= bspice
+CSPICE_EXEC	= cspice
+
+B_DEVICES	= $(DEVICES)
+B_ANALYSES	= $(ANALYSES)
+C_DEVICES	= $(DEVICES)
+C_ANALYSES	= $(ANALYSES)
+
+AR		= ar
+
+SPARSELIB	= sparse
+
+# LIBRARIES = ckt cp dev fte hlp inp mfb mfbpc misc ni smp sparse
+LIBRARIES = dev ckt cp fte hlp inp $(MFBLIB) misc ni $(SPARSELIB)
+
+CFLAGS		= $(CC_OPT) $(SYS_CFLAGS)
+
+LIBRARY_HACK	= $(OBJLIB_DIR)/$(LIBRARY).a
+
+INSTALL_TARGETS	=
+ALL_INSTALL_DIRS=
+INSTALL_DIRS	=
+
+UPDATE_TARGET	=
+
+MSC_RESPONSE_FILE = response.lib
+MSC_EXEC_FILE	= msc51.bat
+
+PARALLEL	=
+NPARALLEL	= 1
+MAKE		= /bin/make
+
+GETOPTLIB	=
+
+S_SPICE_DIR	= $(SPICE_DIR)
+S_SPICE_EXEC_DIR= $(SPICE_EXEC_DIR)
+S_SPICE_LIB_DIR	= $(SPICE_LIB_DIR)
+
+TUNEFILE	= tune
+MFBLIB		= mfb
+
+INSTALL_SUBDIRS	= $(SUBDIRS)
+MSC_SUBDIRS	= $(SUBDIRS)
+MAKE_SUBDIRS	= $(SUBDIRS)
+MSC_ERRS	= msc.out
+
+DEV_SUBDIRS	= $(DEVICES)
+
+ALL_DEVICES	= cpl txl asrc bjt bsim1 bsim2 cap cccs ccvs csw dio ind isrc jfet   \
+		  ltra mes mos1 mos2 mos3 mos6 res sw tra urc vccs vcvs vsrc
+
+ASM_HACK	=

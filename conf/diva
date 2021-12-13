@@ -1,0 +1,3 @@
+SPICE_DIR = /usr/local
+SPICE_LIB_DIR = $(SPICE_DIR)/lib/spice3
+S_SPICE_LIB_DIR = $(SPICE_DIR)/lib/spice3

@@ -1,0 +1,11 @@
+CFILES		= cpl.c cpldel.c cpldest.c cplload.c cplmdel.c cplsetup.c \
+				cplmpar.c cplparam.c 
+
+COBJS		= cpl.o cpldel.o cpldest.o cplload.o cplmdel.o cplsetup.o \
+				cplmpar.o cplparam.o 
+
+MODULE		= cpl
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 3

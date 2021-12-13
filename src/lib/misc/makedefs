@@ -1,0 +1,13 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= alloc.c dos_dirs.c dup2.c mktemp.c printnum.c string.c \
+		  tilde.c time.c math.c ivars.c
+
+COBJS		= alloc.o dos_dirs.o dup2.o mktemp.o printnum.o string.o \
+		  tilde.o time.o math.o ivars.o
+
+LIBRARY		= misc
+LIB_TARGET	= $(OBJLIB_DIR)/$(LIBRARY).a
+

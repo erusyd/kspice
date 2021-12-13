@@ -1,0 +1,11 @@
+CFILES		= txl.c txldel.c txldest.c txlload.c txlmdel.c txlsetup.c \
+				txlmpar.c txlparam.c 
+
+COBJS		= txl.o txldel.o txldest.o txlload.o txlmdel.o txlsetup.o \
+				txlmpar.o txlparam.o 
+
+MODULE		= txl
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 3

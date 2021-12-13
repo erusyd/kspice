@@ -1,0 +1,13 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= spalloc.c spbuild.c spcompat.c spfactor.c spfort.c \
+		  spoutput.c spsmp.c spsolve.c sputils.c 
+
+COBJS		= spalloc.o spbuild.o spcompat.o spfactor.o spfort.o \
+		  spoutput.o spsmp.o spsolve.o sputils.o 
+
+LIBRARY		= sparse
+LIB_TARGET	= $(OBJLIB_DIR)/$(LIBRARY).a
+

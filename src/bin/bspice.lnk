@@ -1,0 +1,13 @@
+bspice.obj bconf.obj tunepc.obj
+bspice.exe/NOI /NOE
+bspice.map
+..\lib\fte+
+..\lib\dev1+
+..\lib\dev2+
+..\lib\dev3+
+..\lib\ckt+
+..\lib\cp+
+..\lib\inp+
+..\lib\ni+
+..\lib\sparse+
+..\lib\misc /se:1000 /st:24000;

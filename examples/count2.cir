@@ -1,0 +1,53 @@
+counter
+xtff1	1	2	500	tff
+xtff2	2	3	500	tff
+xtff3	3	4	500	tff
+xtff4	4	5	500	tff
+xinv10	2	102	500 inv
+xinv11	3	103	500 inv
+xinv12	4	104	500 inv
+xinv13	5	105	500 inv
+xinv14	1	101	500 inv
+*
+.subckt tff 100 12 300
+xnand1	1	5	2	300	nand
+xnand2	1	1	13	300 nand
+xnand3	5	13	3	300 nand
+xnand4	3	8	7	300 nand
+xnand5	2	7	8	300 nand
+xnand6	8	6	9	300 nand
+xnand7	6	7	10	300 nand
+xnand8	9	1	12	300 nand
+xnand9	10	12	1	300 nand
+xinv1   5   6   300 inv
+xinv2   100 5   300 inv
+*xnand10    5   5   6   300 nand
+*xnand11    100 100 5   300 nand
+*
+*
+.subckt nand 1 2 3 4
+mp1		3	2	4	4	mp	l=1.2u	w=1.0u
+mp2		3	1	4	4 	mp  l=1.2u  w=1.0u
+mn1		3	2	5	5	mn	l=1.2u  w=1.0u
+mn2		5	1	0	0	mn 	l=1.2u  w=1.0u
+.ends nand
+.ends tff
+*
+.subckt inv 1 2 3
+mp      2   1   3   3   mp  l=1.2u  w=1.0u
+mn      2   1   0   0   mn  l=1.2u  w=1.0u
+.ends inv
+*
+vdd		500	0	dc	5.0
+vs		1  	0  	PULSE (0 5 0.1NS 0.1NS 0.1NS 15.8NS 32NS)
+*
+.tran 0.2n 512n
+.model mn NMOS VTO=0.8 KP=48U GAMMA=0.30 PHI=0.55
++LAMBDA=0.00 CGSO=0 CGDO=0 CJ=0 CJSW=0 TOX=18000N LD=0.0U
+.model mp PMOS VTO=-0.8 KP=21U GAMMA=0.45 PHI=0.61
++LAMBDA=0.00 CGSO=0 CGDO=0 CJ=0 CJSW=0 TOX=18000N LD=0.0U
+.options reltol=0.1 gmin=1e-9
+.ic v(2)=0.0 v(3)=0.0 v(4)=0.0 v(5)=0.0
+.print tran v(102) v(103) v(104) v(105)
+.end
+

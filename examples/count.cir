@@ -1,0 +1,41 @@
+counter
+xtff1	1	2	2i	500	tff
+xtff2	2	3	3i	500	tff
+xtff3	3	4	4i	500	tff
+xtff4	4	5	5i	500	tff
+*
+.subckt tff 100 12 200 300
+xnand1	1	5	2	300	nand
+xnand2	1	1	13	300 nand
+xnand3	5	13	3	300 nand
+xnand4	3	8	7	300 nand
+xnand5	2	7	8	300 nand
+xnand6	8	6	9	300 nand
+xnand7	6	7	10	300 nand
+xnand8	9	1	12	300 nand
+xnand9	10	12	1	300 nand
+xnand10	5	5	6	300 nand
+xnand11	100	100	5	300 nand
+xnand12 12	12	200	300	nand
+*
+.subckt nand 1 2 3 4
+mp1		3	2	4	4	mp	l=1.2u	w=1.0u
+mp2		3	1	4	4 	mp  l=1.2u  w=1.0u
+mn1		3	2	5	5	mn	l=1.2u  w=1.0u
+mn2		5	1	0	0	mn 	l=1.2u  w=1.0u
+.ends nand
+.ends tff
+*
+vdd		500	0	dc	5.0
+vs		1  	0  	PULSE (5 0 0.1NS 0.1NS 0.1NS 15.8NS 32NS)
+*
+.tran 0.2n 32n
+.model mn NMOS VTO=0.8 KP=48U GAMMA=0.30 PHI=0.55
++LAMBDA=0.00 CGSO=0 CGDO=0 CJ=0 CJSW=0 TOX=18000N LD=0.0U
+.model mp PMOS VTO=-0.8 KP=21U GAMMA=0.45 PHI=0.61
++LAMBDA=0.00 CGSO=0 CGDO=0 CJ=0 CJSW=0 TOX=18000N LD=0.0U
+.options reltol=0.1
+* gmin=1e-9
+.print tran i(vdd)
+.end
+

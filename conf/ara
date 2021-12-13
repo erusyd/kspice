@@ -1,0 +1,9 @@
+OBJECTIVE	= araspice
+
+SPICE_DIR	= /cad
+SPICE_LIB_DIR	= $(SPICE_DIR)/lib/spice3e
+SPICE_EXEC_DIR	= $(SPICE_DIR)/bin
+
+S_SPICE_DIR	= ~cad
+S_SPICE_LIB_DIR	= $(S_SPICE_DIR)/lib/spice3e
+S_SPICE_EXEC_DIR= $(S_SPICE_DIR)/bin

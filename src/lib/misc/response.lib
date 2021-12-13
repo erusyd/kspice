@@ -1,0 +1,10 @@
++alloc.obj&
++dos_dirs.obj&
++dup2.obj&
++mktemp.obj&
++printnum.obj&
++string.obj&
++tilde.obj&
++time.obj&
++math.obj&
++ivars.obj;

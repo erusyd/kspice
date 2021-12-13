@@ -1,0 +1,11 @@
+OBJECTIVE	= robospice
+
+CC_OPT		= -O
+
+SPICE_DIR	= /home/robo7/new_tools
+SPICE_LIB_DIR	= $(SPICE_DIR)/lib/spice3
+SPICE_EXEC_DIR	= $(SPICE_DIR)/bin
+
+S_SPICE_DIR	= $(SPICE_DIR)
+S_SPICE_LIB_DIR	= $(SPICE_LIB_DIR)
+S_SPICE_EXEC_DIR= $(S_SPICE_DIR)/bin

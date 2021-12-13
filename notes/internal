@@ -1,0 +1,62 @@
+Internal Changes from 3d2
+
+	FILE NAMES:
+
+	Of the changes to spice3 between 3d2 and 3e1, the
+	the most obvious is the new filenames.  All filesnames
+	have been converted to lowercase and are at most eight
+	characters plus an optional dot and three character extension.
+	This change was made to accomodate MS-DOS.
+
+
+	The top level directory contains the installation "readme" file
+	and a "makedefs" files used by the "build" command.
+
+	"src/" contains all of the C source code.  This used to be named
+	"spice3d2" in the previous release.
+
+	"src/lib" is the library or "toolkit" portion of Spice3.
+
+	"src/bin" contains the source for all executable programs.
+	"main.c" is used by spice, nutmeg, bspice, and cspice (the
+	latter two for MS-DOS).  The function of "main.c" is altered
+	by defining the symbols SIMULATOR (for either spice, bspice, or
+	cspice), BATCH for bspice, and BATCH and SPICE2 for cspice
+	(no special defines give nutmeg).  The simulators use "conf.c"
+	(or "bconf.c" or "cconf.c"), which is automatically generated from
+	"config.c", to select devices and analyses.  "tune.c" ("tunepc.c")
+	contains the compiled in pathnames.
+
+
+	"examples/" contains several spice input files.
+
+	"lib/" contains standard data files for spice, such as the help 
+	files and MFB capability files.
+
+	"man/" contains UNIX style manual pages (ala "man(1)").
+
+	"util/" contains utility scripts, such as "build" for running the
+	recursive "make" and "delall.bat" for deleting the distribution on
+	MS-DOS systems.
+
+	All "Makefile"s have been replaced with "makedefs" (and optionally
+	"depend" and "makeops").  "makedefs" is combined with other
+	make definition files with the "build" script.
+
+	SOURCE LEVEL CHANGES
+
+	(Added features are listed in the "README" file).
+
+	DEVICES:  The interface to devices has, once again, changed.
+	The change is small from 3d2.  Table size values in the device
+	information struction are now pointers to integers containing
+	the table sizes.  Per-analyses functions have been surrounded 
+	with "#ifdef AN_xx"/"#else"/"#endif" lines.  Note that the
+	"itf.h" files are stored only in the "include/" subdirectory.
+
+	SPARSE MATRIX PACKAGE:  the sparse matrix package in Spice3e1
+	has been replaced by a more efficient implementation.  The
+	interface is the same.
+
+
+

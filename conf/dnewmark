@@ -1,0 +1,7 @@
+# Configuration for Dave Newmark
+
+SPICE_DIR = /tmp/for_dnewmark
+SPICE_LIB_DIR = $(SPICE_DIR)/lib/spice3
+S_SPICE_DIR = /users/cad
+S_SPICE_LIB_DIR = $(S_SPICE_DIR)/lib/spice3
+

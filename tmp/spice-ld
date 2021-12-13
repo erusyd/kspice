@@ -1,0 +1,2 @@
+LDFALGS -lm -ltermlib
+LIBX -L/usr/local/X11R4/lib -lXaw -lXt -lXext -lXmu -lX11

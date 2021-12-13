@@ -1,0 +1,8 @@
++txl.obj&
++txldel.obj&
++txldest.obj&
++txlload.obj&
++txlmdel.obj&
++txlmpar.obj&
++txlparam.obj&
++txlsetup.obj;

@@ -1,0 +1,1 @@
+INCX -I/usr/local/X11R4/include -I/usr/local/X11R4/include/X11 -I/usr/local/X11R4/include/X11/Xmu -I/usr/local/X11R4/include/X11/Xaw

@@ -1,0 +1,5 @@
+# Util target for making a distribution
+
+PURPOSE		= distrib
+BLOCK_UPDATE	= true
+SCRAP_DIR	= /tmp/sp3e1_$(PID)

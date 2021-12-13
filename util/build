@@ -1,0 +1,124 @@
+#!/bin/sh -
+EXEC=
+TMP_DIR=/tmp
+PROG=`basename "$0"`
+if test "$#" -eq 0; then
+	echo "Usage: build [configfile]"
+	exit 1
+fi
+CWD=`pwd`
+
+UTILPATH=`echo "$0" | sed 's/\/[^\/]*$//'`
+UTIL_DIR=`(cd ${UTILPATH}; pwd)`
+CONF_DIR=`(cd ${UTILPATH}/../conf; pwd)`
+TOP=`(cd ${UTILPATH}/..; pwd)`
+
+TOP_TO_CWD=`echo "${CWD}" | sed -e "s@^${TOP}@@" -e 's@^/@@'`
+
+if test "${CWD}" = "/${TOP_TO_CWD}"; then
+	cd "${TOP}"
+	CWD="${TOP}"
+fi
+
+if test ! -d conf; then
+	CWD_TO_TOP=..
+	cd ..
+	while test ! -d conf; do
+		CWD_TO_TOP="${CWD_TO_TOP}/.."
+		if test "`pwd`" = "/"; then
+			echo "Error in $PROG: can't find top level directory" \
+				1>&2
+			exit 1
+		fi
+		cd ..
+	done
+else
+	CWD_TO_TOP=.
+fi
+
+cd "${CWD}"
+
+# echo "TOP: ${TOP}"
+# echo "TOP_TO_CWD: ${TOP_TO_CWD}"
+# echo "CWD_TO_TOP: ${CWD_TO_TOP}"
+# echo "UTIL_DIR: ${UTIL_DIR}"
+# echo "CWD: `pwd` (${CWD})"
+
+STARTUP=recursive
+NAME=`pwd | sed 's/^.*\///'`
+
+SYS_NAME="$1"
+TMP_LEADER="${TMP_DIR}/buildl$$"
+TMP_TRAILER="${TMP_DIR}/buildt$$"
+trap "rm -f ${TMP_LEADER} ${TMP_TRAILER}; exit 1" 1 2 3 4 6 7 8 9 10 12 13 14 15
+echo > "${TMP_TRAILER}"
+FILES0="${TMP_LEADER} ${UTIL_DIR}/lib/make_def.bd ${CONF_DIR}/defaults"
+BAD=false
+while test $# -gt 0; do
+	case "$1" in
+	*=*)	echo "$1" >> "${TMP_TRAILER}"
+		;;
+	-s)	shift
+		SYS_NAME="$1"
+		;;
+	-n)
+		echo "MAKEFLAGS = -n" >> "${TMP_TRAILER}"
+		;;
+	-N)
+		EXEC=echo
+		;;
+	*)
+		if test -r "${CONF_DIR}/$1"; then
+			FILES0="${FILES0} ${CONF_DIR}/$1"
+		elif test -r "${UTIL_DIR}/lib/$1.bld"; then
+			FILES0="${FILES0} ${UTIL_DIR}/lib/$1.bld"
+		else
+			echo "$PROG: no information for \"$1\"" \
+				in config or util directory 1>&2
+			BAD=true
+		fi
+	esac
+	shift
+done
+
+if "${BAD}"; then
+	echo "Build not run" 1>&2
+	exit 1
+fi
+
+if test ! -r makedefs; then
+	echo "No \"makedefs\" file"
+	exit 1
+fi
+
+BUILD_DATE=`date`
+cat > "${TMP_LEADER}" <<DONE_WITH_LEADER
+REALTOP		= ${TOP}
+SYSTEM		= ${SYS_NAME}
+UTIL_DIR	= ${UTIL_DIR}
+FILES		= ${FILES0} makedefs ${TMP_TRAILER} ${UTIL_DIR}/lib/make_std.bd
+NAME		= ${NAME}
+BUILD_DATE	= ${BUILD_DATE}
+PID		= $$
+DONE_WITH_LEADER
+
+if test -s makeops; then
+	OPS=makeops
+else
+	OPS=
+fi
+
+if test -s depend; then
+	DEPEND=depend
+else
+	DEPEND=
+fi
+
+echo Begin \"make\" for "${SYS_NAME}" on "${BUILD_DATE}":
+cat ${FILES0} makedefs "${TMP_TRAILER}"				      \
+	"${UTIL_DIR}/lib/make_std.bd" ${OPS} ${DEPEND}			      \
+	| $EXEC make -f - ${STARTUP} "TOP_TO_CWD=${TOP_TO_CWD}"		      \
+		"CWD_TO_TOP=${CWD_TO_TOP}" "ABS_TOP=${TOP}"
+
+$EXEC rm -f "${TMP_LEADER}" "${TMP_TRAILER}"
+echo Done with build on `date`

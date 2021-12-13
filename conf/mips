@@ -1,0 +1,4 @@
+# DECstation MIPS based system
+RANLIB		= ar ts$(ARLOCAL)
+OBJECT     = kspice
+# SYS_CFLAGS	= -DSTEPDEBUG

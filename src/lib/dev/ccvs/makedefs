@@ -1,0 +1,17 @@
+###########
+# Copyright 1991 Regents of the University of California.  All rights reserved.
+###########
+
+CFILES		= ccvs.c ccvsask.c ccvsdel.c ccvsdest.c ccvsfbr.c ccvsload.c \
+		  ccvsmdel.c ccvspar.c ccvspzld.c ccvssacl.c ccvsset.c \
+		  ccvssld.c ccvssprt.c ccvssset.c 
+
+COBJS		= ccvs.o ccvsask.o ccvsdel.o ccvsdest.o ccvsfbr.o ccvsload.o \
+		  ccvsmdel.o ccvspar.o ccvspzld.o ccvssacl.o ccvsset.o \
+		  ccvssld.o ccvssprt.o ccvssset.o 
+
+MODULE		= ccvs
+LIBRARY		= dev
+MODULE_TARGET	= $(OBJLIB_DIR)/$(MODULE)
+
+NUMBER		= 1
